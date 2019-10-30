@@ -1,0 +1,61 @@
+
+<div style="display: flex; justify-content: space-between; align-items: baseline;">
+    <h1 style="display: inline-block;" mat-dialog-title>{{ data.Title }}</h1>
+    <small style="text-align: right; margin-right: 5px;">{{ data.Type | titlecase }}</small>
+    <small style="text-align: right;">Release date: {{ data.Released }}</small>
+</div>
+<div mat-dialog-content>
+    <div *ngIf="data.Poster !== 'N/A'; then withPoster else withoutPoster"></div>
+    <ng-template #withPoster>
+        <img [src]="data.Poster" [alt]="data.Title" style="width: 33%; float: left; margin-right: 15px;">
+    </ng-template>
+    <ng-template #withoutPoster>
+        <img src="../assets/image/noposter.jpg" [alt]="row.Title" style="width: 33%; float: left; margin-right: 15px;">
+    </ng-template>
+
+    <h6 style="justify-content: flex-start;">Summary</h6>
+    <p>{{ data.Plot }}</p>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col" *ngIf="data.Language !== 'N/A'">
+                <h6>Language</h6>
+                <p style="font-size: 12px;">{{ data.Language }}</p>
+            </div>
+            <div class="col" *ngIf="data.Country !== 'N/A'">
+                <h6>Country</h6>
+                <p style="font-size: 12px;">{{ data.Country }}</p>
+            </div>
+            <div class="col" *ngIf="data.Genre !== 'N/A'">
+                <h6>Genre</h6>
+                <p style="font-size: 12px;">{{ data.Genre }}</p>
+            </div>
+            <div class="col" *ngIf="data.Rated !== 'N/A'">
+                <h6>Rated</h6>
+                <p style="font-size: 12px;">{{ data.Rated }}</p>
+            </div>
+            <div class="col" *ngIf="data.Director !== 'N/A'">
+                <h6>Director</h6>
+                <p style="font-size: 12px;">{{ data.Director }}</p>
+            </div>
+            <div class="col" *ngIf="data.Actors !== 'N/A'">
+                <h6>Actors</h6>
+                <p style="font-size: 12px;">{{ data.Actors }}</p>
+            </div>
+            <div class="col" *ngIf="data.Awards !== 'N/A'">
+                <h6>Awards</h6>
+                <p style="font-size: 12px;">{{ data.Awards }}</p>
+            </div>
+            <div class="col" *ngIf="data.BoxOffice !== 'N/A'">
+                <h6>Box Office</h6>
+                <p style="font-size: 12px;">{{ data.BoxOffice }}</p>
+            </div>
+            <div class="col">
+                <h6>Ratings</h6>
+                <ul>
+                    <li *ngFor="let rating of data.Ratings">{{ rating.Source }}: {{ rating.Value}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
